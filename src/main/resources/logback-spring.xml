@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+		<property name="LOGSPATH" value="C:/logs" />
+        
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    
+	    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+	        <layout class="ch.qos.logback.classic.PatternLayout">
+	            <Pattern>
+	                %d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%5t] %-40.40c{1.} : %m%n%ex
+	            </Pattern>
+	        </layout>
+	    </appender>
+	    
+        <appender name="ROLLING_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOGSPATH}/product/price-reduction.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOGSPATH}/product/price-reduction-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+                <maxFileSize>10MB</maxFileSize>
+                <maxHistory>30</maxHistory>
+            </rollingPolicy>
+
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%5t] %-40.40c{1.} : %m%n%ex</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="ROLLING_APPENDER"/>
+            <appender-ref ref="CONSOLE" />
+        </root>
+
+        <logger name="com.product" level="DEBUG">
+            <appender-ref ref="ROLLING_APPENDER"/>
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <logger name="org.springframework.web" level="INFO">
+            <appender-ref ref="ROLLING_APPENDER"/>
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+</configuration>
