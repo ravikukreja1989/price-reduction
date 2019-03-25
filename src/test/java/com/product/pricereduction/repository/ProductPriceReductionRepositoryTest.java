@@ -40,7 +40,7 @@ public class ProductPriceReductionRepositoryTest {
 		Mockito.when(restTemplate.getForEntity(Mockito.anyString(), Mockito.any())).thenReturn(reponse());
 		List<ProductResponse> response = productPriceReductionRepository.getProductByCatalogId(600001506L);
 		assertNotNull(response);
-		assertTrue(response.size() > 0);	
+		assertTrue(!response.isEmpty());	
 	}
 
 	@Test

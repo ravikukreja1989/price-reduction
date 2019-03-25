@@ -52,7 +52,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_SHOW_WAS_THEN_NOW() {
+	public void testGetProductsForCatalogWithShowWasThenNow() {
 		Long catId = 600001506L;
 		LabelType labelType = LabelType.SHOW_WAS_THEN_NOW;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
@@ -62,7 +62,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_SHOW_WAS_THEN_NOW_Empty_Then2() {
+	public void testGetProductsForCatalogWithShowWasThenNowEmptyThen() {
 		price.setThen2(null);
 		Long catId = 600001506L;
 		LabelType labelType = LabelType.SHOW_WAS_THEN_NOW;
@@ -74,7 +74,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_Empty_Then1_And_Then2() {
+	public void testGetProductsForCatalogWithEmptyThen1AndThen2() {
 		price.setThen1(null);
 		price.setThen2(null);
 		Long catId = 600001506L;
@@ -85,7 +85,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_SHOW_PERC_DISCOUNT() {
+	public void testGetProductsForCatalogWithShowPercDiscount() {
 		Long catId = 600001506L;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
 		List<Product> products = productPriceReductionService.getProductsForCatalog(catId, LabelType.SHOW_PERC_DISCOUNT);
@@ -94,7 +94,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_Default_Label() {
+	public void testGetProductsForCatalogWithDefaultLabel() {
 		Long catId = 600001506L;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
 		List<Product> products = productPriceReductionService.getProductsForCatalog(catId, LabelType.SHOW_WAS_NOW);
@@ -103,7 +103,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_Empty_Label() {
+	public void testGetProductsForCatalogWithEmptyLabel() {
 		Long catId = 600001506L;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
 		List<Product> products = productPriceReductionService.getProductsForCatalog(catId, null);
@@ -112,28 +112,28 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_Empty_Price() {
+	public void testGetProductsForCatalogWithEmptyPrice() {
 		Long catId = 600001506L;
 		price = null;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
 		List<Product> products = productPriceReductionService.getProductsForCatalog(catId, LabelType.SHOW_WAS_NOW);
 		assertNotNull(products);
-		assertTrue(products.size() == 0);
+		assertEquals(0, products.size());
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_WAS_LESS_THEN_NOW() {
+	public void testGetProductsForCatalogWithWasLessThenNow() {
 		Long catId = 600001506L;
 		price.setWas("100.00");
 		price.setNow("200.00");
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
 		List<Product> products = productPriceReductionService.getProductsForCatalog(catId, LabelType.SHOW_WAS_NOW);
 		assertNotNull(products);
-		assertTrue(products.size() == 0);
+		assertEquals(0, products.size());
 	}
-
+	
 	@Test
-	public void testGetProductsForCatalogWith_Now_Price_To() {
+	public void testGetProductsForCatalogWithNowPriceTo() {
 		Long catId = 600001506L;
 		Map<String, String> nowMap = new LinkedHashMap<>();
 		nowMap.put("from", "6.00");
@@ -146,7 +146,7 @@ public class ProductPriceReductionServiceTest {
 	}
 
 	@Test
-	public void testGetProductsForCatalogWith_Empty_Now_Price() {
+	public void testGetProductsForCatalogWithEmptyNowPrice() {
 		Long catId = 600001506L;
 		price.setNow("");
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
@@ -157,12 +157,12 @@ public class ProductPriceReductionServiceTest {
 
 
 	@Test
-	public void testGetProductsForCatalogWith_Empty_ProductList() {
+	public void testGetProductsForCatalogWithEmptyProductList() {
 		Long catId = 600001506L;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(null);
 		List<Product> products = productPriceReductionService.getProductsForCatalog(catId, LabelType.SHOW_WAS_NOW);
 		assertNotNull(products);
-		assertTrue(products.size() == 0);
+		assertEquals(0, products.size());
 	}
 
 	private List<ProductResponse> buildProductList(PriceResponse price){
@@ -190,7 +190,7 @@ public class ProductPriceReductionServiceTest {
 	
 	private void assertList(List<Product>products) {
 		assertNotNull(products);
-		assertTrue(products.size() > 0);
+		assertTrue(!products.isEmpty());
 	}
 	
 	@Test

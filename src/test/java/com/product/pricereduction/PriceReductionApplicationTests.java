@@ -11,6 +11,7 @@ public class PriceReductionApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		PriceReductionApplication.main(new String[] {});
 	}
 
 }
