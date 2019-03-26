@@ -45,7 +45,7 @@ public class ProductPriceReductionControllerTest {
 	}
 	
 	@Test
-	public void testGetProductsWithPriceReductionWith_Unmatched_Label() throws Exception {
+	public void testGetProductsWithPriceReductionWithUnmatchedLabel() throws Exception {
 
 		Mockito.when(productPriceReductionService.getProductsForCatalog(600001506L, LabelType.SHOW_WAS_NOW)).thenReturn(buildProductList());
 
@@ -55,7 +55,7 @@ public class ProductPriceReductionControllerTest {
 	}
 	
 	@Test
-	public void testGetProductsWithPriceReductionWith_Empty_ProductList() throws Exception {
+	public void testGetProductsWithPriceReductionWithEmptyProductList() throws Exception {
 
 		Mockito.when(productPriceReductionService.getProductsForCatalog(600001506L, LabelType.SHOW_WAS_NOW)).thenReturn(null);
 

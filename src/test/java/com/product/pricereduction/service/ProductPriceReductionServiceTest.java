@@ -194,7 +194,7 @@ public class ProductPriceReductionServiceTest {
 	}
 	
 	@Test
-	public void testGetProductsForCatalogWith_BasicColor_To_RGB_Translate() {
+	public void testGetProductsForCatalogWithBasicColorToRGBTranslate() {
 		Long catId = 600001506L;
 		LabelType labelType = LabelType.SHOW_WAS_THEN_NOW;
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
@@ -204,7 +204,7 @@ public class ProductPriceReductionServiceTest {
 	}
 	
 	@Test
-	public void testGetProductsForCatalogWith_Price_With_Decimal_Value() {
+	public void testGetProductsForCatalogWithPriceWithDecimalValue() {
 		Long catId = 600001506L;
 		price.setNow("5.00");
 		Mockito.when(productPriceReductionRepository.getProductByCatalogId(catId)).thenReturn(buildProductList(price));
